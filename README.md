@@ -43,8 +43,11 @@ cd DATA_SCIENCE_MACHINE_LEARNING
 ```  
 ### 2. Run the Automated Production Pipeline ###  
 To process raw farmer documents and export an automated predictions spreadsheet automatically, execute:  
+```bash
 python run_pipeline.py  
-
+```
 ### 3. Launch the Interactive Web Dashboard
-To deploy the live local user interface on your browser, execute:  
+To deploy the live local user interface on your browser, execute:
+```bash  
 streamlit run app.py
+```
