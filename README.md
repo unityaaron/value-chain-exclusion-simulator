@@ -1,6 +1,6 @@
 # 🌾 Smallholder Agricultural Yield Prediction & Causal Inference Pipeline
 ### Developed by Unity Aaron  
-🔗 **Live Interactive Web Application:** [Click Here to Launch the App](PASTE_YOUR_REAL_STREAMLIT_LINK_HERE)
+🔗 **Live Interactive Web Application:** [Click Here to Launch the App](https://unityaaron-machine-learning-research-live-app.streamlit.app/)
 
 An end-to-end data science and machine learning system engineered to analyze, predict, and optimize smallholder farmer crop yields in Edo State. This repository transitions an initial exploratory analysis into a production-ready, automated predictive pipeline featuring advanced feature engineering and an interactive web deployment interface.
 
