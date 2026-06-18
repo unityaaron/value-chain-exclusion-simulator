@@ -57,7 +57,7 @@ frozen_robot = joblib.load('machine_learning_model/jpil_random_forest_model.pkl'
 # 5. GENERATE AND SHOW PREDICTIONS LIVE
 # -----------------------------------------------------------------
 st.write("---")
-st.subheader("🔮Live Predictive Result")
+st.subheader("Live Predictive Result")
 
 # When the web user clicks this big button, run the model
 if st.button("Calculate Predicted Yield Change"):
