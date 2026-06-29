@@ -5,7 +5,7 @@ import joblib
 import os
 
 # -------------------------------------------------------------------------
-# 1. PAGE SETUP, CONFIGURATION, & GRAPHIC DEPENDENCIES
+# 1. PAGE SETUP & CONFIGURATION
 # -------------------------------------------------------------------------
 st.set_page_config(
     page_title="Value Chain & Behavioral Adoption Simulator",
@@ -21,10 +21,10 @@ st.markdown("""
     .section-header { font-size: 18px; font-weight: bold; color: #004C54; margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #E2E8F0; padding-bottom: 5px; }
     .tier-box { padding: 12px; border-radius: 6px; font-weight: bold; text-align: center; font-size: 16px; margin-top: 10px; }
     </style>
-""", unsafe_html=True)
+""", unsafe_allow_html=True)
 
-st.markdown('<div class="main-title">Agri-Food Value Chain & Behavioral Adoption Simulator</div>', unsafe_html=True)
-st.markdown('<div class="subtitle">An End-to-End Predictive Pipeline Integrating Supply Chain Standards with Choice Architecture Modeling</div>', unsafe_html=True)
+st.markdown('<div class="main-title">Agri-Food Value Chain & Behavioral Adoption Simulator</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">An End-to-End Predictive Pipeline Integrating Supply Chain Standards with Choice Architecture Modeling</div>', unsafe_allow_html=True)
 
 # -------------------------------------------------------------------------
 # 2. SAFELY LOAD THE PREDICTIVE MACHINE LEARNING BACKEND
@@ -56,12 +56,12 @@ def fallback_prediction(fertilizer, training, farm_size, pest_incidence):
     return min(predicted_change, 35.0)
 
 # -------------------------------------------------------------------------
-# 3. GLOBAL INTERFACE LAYOUT: CONTROL vsANALYTICS PANELS
+# 3. GLOBAL INTERFACE LAYOUT: CONTROL vs ANALYTICS PANELS
 # -------------------------------------------------------------------------
 col_left, col_right = st.columns([1, 1.2])
 
 with col_left:
-    st.markdown('<div class="section-header">🎛️ Panel 1: Production Side & Behavioral Nudges</div>', unsafe_html=True)
+    st.markdown('<div class="section-header">🎛️ Panel 1: Production Side & Behavioral Nudges</div>', unsafe_allow_html=True)
     farm_size = st.slider("Farm Size (Hectares):", min_value=0.5, max_value=10.0, value=2.5, step=0.5)
     fertilizer_used = st.slider("Total Fertilizer Applied (kg):", min_value=0, max_value=300, value=120, step=10)
     
@@ -79,18 +79,17 @@ with col_left:
     )
     pest_binary = 1 if pest_select == "Yes" else 0
 
-    st.markdown('<div class="section-header">⚙️ Panel 2 & 4: Macro Institutional & Policy Modifiers</div>', unsafe_html=True)
+    st.markdown('<div class="section-header">⚙️ Panel 2 & 4: Macro Institutional & Policy Modifiers</div>', unsafe_allow_html=True)
     st.write("Modify the structural variables to simulate policy reforms and target scenarios.")
     
-    # Baselines securely hardcoded from primary data context
     land_tenure = st.slider("Land Tenure Security (% Fully Titled Area):", min_value=0, max_value=100, value=34, help="Baseline: 34%")
     credit_access = st.slider("Formal Credit Access Rate (% of Cohort):", min_value=0, max_value=100, value=20, help="Baseline: 20%")
     subsidy_delivery = st.slider("State Input Subsidy Delivery Rate (% Reach):", min_value=0, max_value=100, value=0, help="Baseline: 0%")
 
 with col_right:
-    st.markdown('<div class="section-header">📊 Integrated Model Output & Value Chain Tiers</div>', unsafe_html=True)
+    st.markdown('<div class="section-header">📊 Integrated Model Output & Value Chain Tiers</div>', unsafe_allow_html=True)
     
-    # 3a. Core Yield Engine Prediction
+    # Execution of Core Yield Engine Prediction
     if model is not None:
         try:
             input_features = pd.DataFrame([{
@@ -109,10 +108,10 @@ with col_right:
         f'<span style="font-weight: bold; color: #16A34A;">📈 Predicted Crop Yield Improvement:</span> '
         f'<span style="font-size: 20px; font-weight: bold; color: #16A34A;">{predicted_yield_change:.2f}%</span>'
         f'</div>', 
-        unsafe_html=True
+        unsafe_allow_html=True
     )
 
-    # 3b. Panel 2: Value Chain Market Integration Classifier Logic
+    # Panel 2: Value Chain Market Integration Classifier Logic
     if land_tenure < 40 or credit_access < 30:
         tier_level, tier_name = 0, "Tier 0: Informal Spot Market"
         tier_desc = "Zero certification capacity. Trapped in roadside spot-selling with high vulnerability to middleman price setting."
@@ -130,13 +129,13 @@ with col_right:
         tier_desc = "Full international standards compliance unlocked by land collateral and asset liquidity. Captures maximum premium."
         tier_color, tier_text_color, farm_gate_price = "#DCFCE7", "#166534", 380.0
 
-    st.markdown(f'<div class="tier-box" style="background-color: {tier_color}; color: {tier_text_color};">{tier_name}</div>', unsafe_html=True)
+    st.markdown(f'<div class="tier-box" style="background-color: {tier_color}; color: {tier_text_color};">{tier_name}</div>', unsafe_allow_html=True)
     st.caption(f"**Market Dynamics:** {tier_desc}")
 
     # -------------------------------------------------------------------------
     # 4. PANEL 3: VALUE CHAIN MARGIN GAP CALCULATOR
     # -------------------------------------------------------------------------
-    st.markdown('<div class="section-header">💸 Panel 3: Value Chain Margin & Premium Extraction</div>', unsafe_html=True)
+    st.markdown('<div class="section-header">💸 Panel 3: Value Chain Margin & Premium Extraction</div>', unsafe_allow_html=True)
     retail_certified_wtp = 450.0  
     margin_gap = retail_certified_wtp - farm_gate_price
     percentage_lost = (margin_gap / retail_certified_wtp) * 100
@@ -150,7 +149,7 @@ with col_right:
     # -------------------------------------------------------------------------
     # 5. PANEL 5: BEHAVIORAL ADOPTION BARRIER SIMULATOR
     # -------------------------------------------------------------------------
-    st.markdown('<div class="section-header">🧠 Panel 5: Behavioral Barriers to Climate Practice Adoption</div>', unsafe_html=True)
+    st.markdown('<div class="section-header">🧠 Panel 5: Behavioral Barriers to Climate Practice Adoption</div>', unsafe_allow_html=True)
     
     # Compute composite behavioral adoption metric using engineered empirical weights
     adoption_score = (
